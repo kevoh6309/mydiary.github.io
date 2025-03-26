@@ -1,0 +1,3 @@
+  shop:& C:/Users/kevoh/AppData/Local/Programs/Python/Python313/python.exe "c:/Users/kevoh/OneDrive/Desktop/My diary/app.py" 
+  buyer:& C:/Users/kevoh/AppData/Local/Programs/Python/Python313/python.exe "c:/Users/kevoh/OneDrive/Desktop/My diary/app.py"
+  

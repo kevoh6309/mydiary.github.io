@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Write Diary Entry</title>
+</head>
+<body>
+    <h1>Write a New Diary Entry</h1>
+    <form method="POST">
+        <textarea id="diaryEntry" name="content" rows="5" cols="40" placeholder="Write your thoughts..."></textarea><br>
+        <button type="submit">Save Entry</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    h1 {
+        color: #333;
+    }
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    a {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    a:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<script>
+    let textarea = document.getElementById("diaryEntry");
+    
+    // Auto-save text in localStorage while typing
+    textarea.addEventListener("input", () => {
+        localStorage.setItem("diaryDraft", textarea.value);
+    });
+
+    // Restore saved text when page loads
+    document.addEventListener("DOMContentLoaded", () => {
+        textarea.value = localStorage.getItem("diaryDraft") || "";
+    });
+</script>
+
+</html>

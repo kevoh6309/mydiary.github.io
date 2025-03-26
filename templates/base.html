@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your App Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header style="padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+        <h1>Your App Name</h1>
+        <button onclick="toggleTheme()" style="font-size: 1.5em; padding: 10px; cursor: pointer;">
+            <i class="fas fa-moon"></i> <!-- Moon icon for dark mode -->
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        <!-- Content from specific pages will go here -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer style="padding: 10px; text-align: center; margin-top: 20px;">
+        <p>© 2025 Your App. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            let body = document.body;
+            body.classList.toggle("dark-mode");
+
+            // Toggle between dark and light theme icons
+            let icon = document.querySelector('button i');
+            if (body.classList.contains("dark-mode")) {
+                icon.classList.replace('fa-moon', 'fa-sun');  // Change to sun icon in dark mode
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');  // Change to moon icon in light mode
+            }
+
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+                // Set the sun icon on load if dark mode is active
+                document.querySelector('button i').classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+    </script>
+
+    <style>
+        /* Light mode styling */
+        body {
+            background-color: #fff;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* Dark mode styling */
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        button:focus {
+            outline: none;
+        }
+    </style>
+
+</body>
+
+</html>
